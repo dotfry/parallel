@@ -108,12 +108,6 @@ zend_string* php_parallel_copy_string(zend_string *source, zend_bool persistent)
 zend_class_entry* php_parallel_copy_scope(zend_class_entry *class) {
     zend_class_entry *scope;
 
-#ifdef ZEND_ACC_IMMUTABLE
-    if (class->ce_flags & ZEND_ACC_IMMUTABLE) {
-        return class;
-    }
-#endif
-
     if ((scope = zend_hash_index_find_ptr(&PCG(scope), (zend_ulong) class))) {
         return scope;
     }
